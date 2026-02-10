@@ -1,0 +1,36 @@
+*{
+    
+}
+
+#Datum {
+    color : rgb(23, 37, 10);
+   
+}
+
+#Kalender {
+    display: flex;
+    justify-content: center;
+    transform: scale(2);
+    margin: 120;
+    background-color: rgba(0, 160, 160, 0.486);
+}
+
+#Info {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 11;
+    
+}
+
+
+
+#Datum{
+    display:flex;
+    justify-content: center
+}
+
+#historical{
+    display:flex;
+    justify-content: left;
+    transform: scale(0.8);
+}
