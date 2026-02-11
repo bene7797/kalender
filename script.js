@@ -11,15 +11,15 @@ const historicInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
 
+meinKalender.initTableEvents(kalendar);
+
+
+
 const pc = new ParticleCanvas();
 pc.initSnow();
 pc.animate();
-/*
-let meinCanvas = new ParticleCanvas();
-meinCanvas.initSnow();
-meinCanvas.draw();
-meinKalender.initTableEvents(kalendar);
-*/
+window.addEventListener('resize', () => { pc.resize();});
+
 
 
 previousMonthButton.addEventListener(`click`, () => {

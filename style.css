@@ -13,9 +13,20 @@ body{
     
 }
 
+#PartikelCanvas{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;   
+    height: 100vh;  
+    z-index: -1;    
+    
+    pointer-events: none; /*Damit die klicks nicht den canvas erwischen */
+}
+
 button{
-    align-self: flex-start; /* Verhindert das "Strecken" in der Höhe */
-    width: fit-content;      /* Verhindert das "Strecken" in der Breite */
+    align-self: flex-start; 
+    width: fit-content;    
     background-color: rgba(157, 175, 255, 0.623);
      border-radius: 10px;
     
