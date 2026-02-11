@@ -1,9 +1,10 @@
 body{
     background-color: #defcf9;
-    background-image: url("Winter.jpg");
+   
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-image: "/Bilder/Winter01.jpg";
 }
 
 #kalenderLayout{

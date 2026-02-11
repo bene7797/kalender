@@ -1,5 +1,6 @@
 import { Calender } from "./Calendar.js";
 import { ParticleCanvas } from "./ParticleCanvas.js";
+import { Images } from "./Images.js";
 
 
 let meinKalender = new Calender(new Date(2026,3,10));
@@ -10,17 +11,16 @@ const kalendar = document.getElementById("Kalender");
 const historicInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
+const myImages = new Images();
+const meinBody = document.body;
+//meinBody.style.backgroundImage ="/Bilder/Winter01.jpg";
 
 meinKalender.initTableEvents(kalendar);
-
-
 
 const pc = new ParticleCanvas();
 pc.initSnow();
 pc.animate();
 window.addEventListener('resize', () => { pc.resize();});
-
-
 
 previousMonthButton.addEventListener(`click`, () => {
   meinKalender.previousMonth();
@@ -34,10 +34,6 @@ datum.innerHTML = meinKalender.getDateString();
 info.innerHTML = meinKalender.getDayInfoText();
 kalendar.innerHTML = meinKalender.getCalendarHTML();
 historicInfo.innerHTML = await meinKalender.anzeigen();
-
-//meinCanvas.draw();
-
-
 
 window.addEventListener(`calendarUpdate`,async () => {
     console.log("Datum geändert");
