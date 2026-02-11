@@ -11,6 +11,34 @@ export class Calender{
        
     }
 
+
+    /**
+ * @param {HTMLTableElement} kalenderTabelle
+ */
+    initTableEvents(kalenderTabelle){
+        kalenderTabelle.addEventListener(`click`, (event) => {
+            const zelle = event.target;
+
+            console.log("inti");
+
+            if(zelle.tagName === `TD` && zelle.innerText.trim() !== ""){
+                const today = parseInt(zelle.innerText);
+                console.log(today);
+                this.date = new Date(this.year,this.month,today);
+                this.calculateDates();
+                const event = new CustomEvent(`calendarUpdate`, {
+                     detail: {date:this.date}
+                });
+                 window.dispatchEvent(event);
+                
+            }
+
+           
+
+        })
+    }
+    
+
     calculateDates(){
         this.day = this.date.getDate();
         this.month = this.date.getMonth();

@@ -8,6 +8,8 @@ const historicInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
 
+meinKalender.initTableEvents(kalendar);
+
 previousMonthButton.addEventListener(`click`, () => {
   meinKalender.previousMonth();
 });
