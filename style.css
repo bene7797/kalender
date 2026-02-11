@@ -1,10 +1,15 @@
 body{
     background-color: #defcf9;
+    background-image: url("Winter.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 #kalenderLayout{
     display:flex;
     justify-content: center;
+     opacity: 0.85;
     
 }
 
@@ -16,10 +21,12 @@ button{
     
 }
 
+
 #Infos{
     display: flex;
     background-color:  #c3bef0;
      border-radius: 10px;
+     opacity: 0.85;
 }
 
 td.datum-klickbar{
