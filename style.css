@@ -10,6 +10,7 @@ body{
 button{
     align-self: flex-start; /* Verhindert das "Strecken" in der Höhe */
     width: fit-content;      /* Verhindert das "Strecken" in der Breite */
+    background-color: rgba(149, 167, 250, 0.623);
 }
 
 #Infos{
