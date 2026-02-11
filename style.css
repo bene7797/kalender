@@ -17,6 +17,18 @@ button{
     background-color:  #c3bef0;
 }
 
+td.datum-klickbar{
+    cursor: pointer;
+}
+
+td.datum-klickbar:hover {
+    background-color: #f0f0f0;
+}
+
+td.ausgewaehlt {
+    background-color: #d0d0d0; 
+    font-weight: bold;
+}
 
 #Kalender {
     display: flex;

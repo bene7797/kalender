@@ -49,7 +49,7 @@ export class Calender{
                 let index = reihe + 7*spalte + 1 - firstDayIndex;
                 let leer = " "
                 if(index > 0 && index <= daysInMonth){
-                    kalenderhtml += `<td>${index}</td>`
+                    kalenderhtml += `<td class = "datum-klickbar">${index}</td>`
                 }else{
                     kalenderhtml += `<td></td>`
                 }
