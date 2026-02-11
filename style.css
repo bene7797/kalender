@@ -16,7 +16,7 @@ body{
 button{
     align-self: flex-start; /* Verhindert das "Strecken" in der Höhe */
     width: fit-content;      /* Verhindert das "Strecken" in der Breite */
-    background-color: rgba(149, 167, 250, 0.623);
+    background-color: rgba(157, 175, 255, 0.623);
      border-radius: 10px;
     
 }
@@ -24,7 +24,7 @@ button{
 
 #Infos{
     display: flex;
-    background-color:  #c3bef0;
+    background-color:  #bfb7ff;
      border-radius: 10px;
      opacity: 0.85;
 }
@@ -47,7 +47,7 @@ td.ausgewaehlt {
     justify-content: center;
     transform: scale(2);
     margin: 120;
-    background-color:  #cadefc;
+    background-color:  #c9ebff;
     
    border-radius: 10px;
 }
