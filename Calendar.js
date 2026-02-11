@@ -8,6 +8,14 @@ export class Calender{
         this.month = date.getMonth();
         this.year = date.getFullYear();
         this.feiertag = isHoliday(date, 'ALL')? `ein` : `kein`;
+       
+    }
+
+    calculateDates(){
+        this.day = this.date.getDate();
+        this.month = this.date.getMonth();
+        this.year = this.date.getFullYear();
+        this.feiertag = isHoliday(this.date, 'ALL')? `ein` : `kein`;
     }
 
     getDateString(){
@@ -63,10 +71,20 @@ export class Calender{
     
 
     async ereignisseAlsListe() {
+
+        
+    
+
+        const jsonUrl = `https://de.wikipedia.org/api/rest_v1/feed/onthisday/events/${this.month}/${this.day}`;
   
-        const res = await fetch(
-            `https://api.wikimedia.org/feed/v1/wikipedia/de/onthisday/events/${this.month}/${this.day}`
-        );
+        const res = await fetch(jsonUrl, {
+        headers: {
+            'Api-User-Agent': 'MeinKalenderProjekt/1.0 (dein-email@beispiel.de)'
+        }
+        });
+
+
+        if (!res.ok) throw new Error("API Fehler");
         const data = await res.json();
 
         const items = data.events
@@ -85,7 +103,45 @@ export class Calender{
     }
 
 
-   
+    nextMonth(){
+
+        let year = this.year;
+        let month = this.month;
+        month++;
+        
+        if (this.month > 11){
+            month = 0;
+            year++;
+        }
+
+        this.date = new Date(year,month,this.day)
+        this.calculateDates();
+
+        const event = new CustomEvent(`calendarUpdate`, {
+            detail: {date:this.date}
+        });
+        window.dispatchEvent(event);
+    }
+
+
+    previousMonth(){
+        let year = this.year;
+        let month = this.month;
+        month--;
+        
+        if (this.month < 0){
+            month = 12;
+            year--;
+        }
+
+        this.date = new Date(year,month,this.day)
+        this.calculateDates();
+
+        const event = new CustomEvent(`calendarUpdate`, {
+            detail: {date:this.date}
+        });
+        window.dispatchEvent(event);
+    }
 
 
 }
