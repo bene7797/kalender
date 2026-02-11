@@ -21,6 +21,7 @@ export class Calender{
     getSeason(){
         const meinBody = document.body;
         
+        
        
         if(this.month >= 0 && this.month <= 2){
             

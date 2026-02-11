@@ -3,7 +3,7 @@ import { ParticleCanvas } from "./ParticleCanvas.js";
 import { Images } from "./Images.js";
 
 
-let meinKalender = new Calender(new Date(2026,1,10));
+let meinKalender = new Calender(new Date(1997,7-1,7));
 
 const datum = document.getElementById("Datum");
 const info = document.getElementById("Info");
