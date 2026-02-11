@@ -1,5 +1,19 @@
-*{
-    
+body{
+    background-color: #defcf9;
+}
+
+#Infos{
+    display: flex;
+    background-color:  #c3bef0;
+}
+
+
+#Kalender {
+    display: flex;
+    justify-content: center;
+    transform: scale(2);
+    margin: 120;
+    background-color:  #cadefc;
 }
 
 #Datum {
@@ -7,19 +21,12 @@
    
 }
 
-#Kalender {
-    display: flex;
-    justify-content: center;
-    transform: scale(2);
-    margin: 120;
-    background-color: rgba(0, 160, 160, 0.486);
-}
+
 
 #Info {
     display:flex;
     justify-content: center;
-    margin-bottom: 11;
-    
+    margin-top: 55;
 }
 
 
