@@ -2,6 +2,16 @@ body{
     background-color: #defcf9;
 }
 
+#kalenderLayout{
+    display:flex;
+    justify-content: center;
+}
+
+button{
+    align-self: flex-start; /* Verhindert das "Strecken" in der Höhe */
+    width: fit-content;      /* Verhindert das "Strecken" in der Breite */
+}
+
 #Infos{
     display: flex;
     background-color:  #c3bef0;
