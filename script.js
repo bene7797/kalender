@@ -3,7 +3,7 @@ import { ParticleCanvas } from "./ParticleCanvas.js";
 import { Images } from "./Images.js";
 
 
-let meinKalender = new Calender(new Date(2026,3,10));
+let meinKalender = new Calender(new Date(2026,1,10));
 
 const datum = document.getElementById("Datum");
 const info = document.getElementById("Info");
@@ -12,10 +12,16 @@ const historicInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
 const myImages = new Images();
+
 const meinBody = document.body;
-//meinBody.style.backgroundImage ="/Bilder/Winter01.jpg";
+       
+      
+//meinBody.style.backgroundImage =`url('${myImages.fruehlingImages[1]}')`;
+     
+
 
 meinKalender.initTableEvents(kalendar);
+meinKalender.getSeason();
 
 const pc = new ParticleCanvas();
 pc.initSnow();

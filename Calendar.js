@@ -1,4 +1,5 @@
 import { isHoliday, getHolidays } from 'https://cdn.skypack.dev/feiertagejs';
+import { Images } from './Images.js';
 
 export class Calender{
 
@@ -8,13 +9,37 @@ export class Calender{
         this.month = date.getMonth();
         this.year = date.getFullYear();
         this.feiertag = isHoliday(date, 'ALL')? `ein` : `kein`;
-       
+        this.images = new Images();
+        
     }
 
 
     /**
  * @param {HTMLTableElement} kalenderTabelle
  */
+
+    getSeason(){
+        const meinBody = document.body;
+        
+       
+        if(this.month >= 0 && this.month <= 2){
+            
+             meinBody.style.backgroundImage =`url('${this.images.winterImages[Math.floor(Math.random() * this.images.winterImages.length)]}')`;
+        }
+        if(this.month >= 3 && this.month <= 5){
+            
+             meinBody.style.backgroundImage =`url('${this.images.fruehlingImages[Math.floor(Math.random() * this.images.fruehlingImages.length)]}')`;
+        }
+        if(this.month >= 6 && this.month <= 8){
+            
+             meinBody.style.backgroundImage =`url('${this.images.sommerImages[Math.floor(Math.random() * this.images.sommerImages.length)]}')`;
+        }
+        if(this.month >= 9 && this.month <= 11){
+            
+             meinBody.style.backgroundImage =`url('${this.images.herbstImages[Math.floor(Math.random() * this.images.herbstImages.length)]}')`;
+        }
+    }
+
     initTableEvents(kalenderTabelle){
         kalenderTabelle.addEventListener(`click`, (event) => {
             const zelle = event.target;
@@ -41,6 +66,7 @@ export class Calender{
         this.month = this.date.getMonth();
         this.year = this.date.getFullYear();
         this.feiertag = isHoliday(this.date, 'ALL')? `ein` : `kein`;
+        this.getSeason();
     }
 
     getDateString(){
