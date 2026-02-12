@@ -152,6 +152,8 @@ export class Calender{
         console.error("Fehler beim Laden:", error);
         //Dummy Daten falls Api nicht funktioniert
         return `<ul>
+                        Wikipedia-API nicht verfügbar - unten stehen sind Dummy-Daten <br>
+                    <br>
                     <li><strong>1809:</strong> Charles Darwin und Abraham Lincoln werden am selben Tag geboren.</li>
                     <li><strong>1912:</strong> Die RMS Titanic kollidiert auf ihrer Jungfernfahrt mit einem Eisberg.</li>
                     <li><strong>1922:</strong> Das Grab von Tutanchamun wird im Tal der Könige entdeckt.</li>
