@@ -70,7 +70,7 @@ export class Calender{
     }
 
     getDateString(){
-        return `Kalenderblatt vom ${this.day}.${this.month + 1}.${this.year}`;
+        return ` ${this.day}.${this.month + 1}.${this.year}`;
     }
 
     getDayInfoText(){
@@ -123,27 +123,42 @@ export class Calender{
 
     async ereignisseAlsListe() {
 
-        
-    
+       try {
+        const month = String(this.month).padStart(2, '0');
+        const day = String(this.day).padStart(2, '0');
+        const jsonUrl = `https://de.wikipedia.org/api/rest_v1/feed/onthisday/events/${month}/${day}`;
 
-        const jsonUrl = `https://de.wikipedia.org/api/rest_v1/feed/onthisday/events/${this.month}/${this.day}`;
-  
         const res = await fetch(jsonUrl, {
-        headers: {
-            'Api-User-Agent': 'MeinKalenderProjekt/1.0 (dein-email@beispiel.de)'
-        }
+            headers: { 'Api-User-Agent': 'MeinKalenderProjekt/2.0' }
         });
 
+        if (!res.ok) throw new Error(`API Status: ${res.status}`);
 
-        if (!res.ok) throw new Error("API Fehler");
         const data = await res.json();
+        
+      
+        const list = data.events || data.selected || [];
 
-        const items = data.events
+        if (list.length === 0) return "Keine Ereignisse gefunden.";
+
+        const items = list
             .slice(0, 5)
             .map(e => `<li><strong>${e.year}:</strong> ${e.text}</li>`)
             .join("");
 
-        return `<ul>${items}</ul>`;
+        return `<ul style="text-align: left; list-style: none; padding: 0;">${items}</ul>`;
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+        //Dummy Daten falls Api nicht funktioniert
+        return `<ul>
+                    <li><strong>1809:</strong> Charles Darwin und Abraham Lincoln werden am selben Tag geboren.</li>
+                    <li><strong>1912:</strong> Die RMS Titanic kollidiert auf ihrer Jungfernfahrt mit einem Eisberg.</li>
+                    <li><strong>1922:</strong> Das Grab von Tutanchamun wird im Tal der Könige entdeckt.</li>
+                    <li><strong>1969:</strong> Neil Armstrong betritt als erster Mensch die Mondoberfläche.</li>
+                    <li><strong>1989:</strong> Die Berliner Mauer fällt und markiert das Ende des Kalten Krieges.</li>
+                </ul>`;
+    }
         
     }
 

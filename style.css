@@ -1,20 +1,29 @@
 body{
     background-color: #defcf9;
-   
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-image: "/Bilder/Winter01.jpg";
+
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Elemente stehen jetzt untereinander */
+    align-items: center;    /* Zentriert sie horizontal in der Spalte */
+    margin: 0;
+    min-height: 100vh;
 }
-
-
 
 #kalenderLayout{
-    display:flex;
-    justify-content: center;
-     opacity: 0.85;
+    display: inline-grid;
+    grid-template-rows: repeat(9, 100px);
+    grid-template-columns: repeat(5, 100px);
     
+    opacity: 0.85;
+    background-color:  #38b6ff;
+    border-radius: 10px;
 }
+
 
 #PartikelCanvas{
     position: fixed; 
@@ -28,19 +37,58 @@ body{
 }
 
 button{
-    align-self: flex-start; 
-    width: fit-content;    
-    background-color: rgba(157, 175, 255, 0.623);
-     border-radius: 10px;
+   
+       
+    background-color: rgba(0, 155, 245, 0.623);
+    border-radius: 10px;
+    margin: 20;
+}
+
+#Info{
+    
+    grid-row: 6/8;
+    grid-column: 1/6;
+    text-align: center;
+    background-color: rgba(22, 109, 0, 0.26);
+    border-radius: 10px;
+
+    /* Innerhalb der Grid centrieren */
+    display: flex;
+    align-items: center;
+    margin: 20;
+}
+
+#historical{
+    grid-row: 8/11;
+    grid-column: 1/6;
+    background-color: rgba(22, 109, 0, 0.26);
+    border-radius: 10px;
+    margin: 20;
+
     
 }
 
+#previousMonth{
+    grid-row: 1/1;
+    grid-column: 1/1;
+    justify-items: center;
+    align-items: center;
+}
+#nextMonth{
+    grid-row: 1/1;
+    grid-column: 5/5;
+    justify-items: center;
+    align-items: center;
+}
+#Datum{
+    grid-row: 1/1;
+    grid-column: 2/4;
+}
 
 #Infos{
-    display: flex;
-    background-color:  #bfb7ff;
-     border-radius: 10px;
-     opacity: 0.85;
+    background-color:  #8acbff;
+    border-radius: 10px;
+    opacity: 0.85;
 }
 
 td.datum-klickbar{
@@ -56,38 +104,22 @@ td.ausgewaehlt {
     font-weight: bold;
 }
 
+
+
 #Kalender {
-    display: flex;
-    justify-content: center;
-    transform: scale(2);
-    margin: 120;
-    background-color:  #c9ebff;
-    
-   border-radius: 10px;
-}
-
-#Datum {
-    color : rgb(23, 37, 10);
-   
-}
-
-
-
-#Info {
-    display:flex;
-    justify-content: center;
-    margin-top: 55;
+    grid-row: 2/6;
+    grid-column:1/6;
+    justify-items: right;
+    justify-content: right;
+    text-align: center;
 }
 
 
 
 #Datum{
-    display:flex;
-    justify-content: center
+    grid-row: 1/1;
+    grid-column:3/6;
+    justify-items: center;
+    align-items: center;
 }
 
-#historical{
-    display:flex;
-    justify-content: left;
-    transform: scale(0.8);
-}

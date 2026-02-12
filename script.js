@@ -2,7 +2,7 @@ import { Calender } from "./Calendar.js";
 import { ParticleCanvas } from "./ParticleCanvas.js";
 
 //INIT
-let myCalendar = new Calender(new Date(1997,7-1,7));
+let myCalendar = new Calender(new Date(1997,1-1,1));
 const date = document.getElementById("Datum");
 const dayInfo = document.getElementById("Info");
 const calendar = document.getElementById("Kalender");
