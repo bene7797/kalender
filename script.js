@@ -21,6 +21,7 @@ historicalDayInfo.innerHTML = await myCalendar.anzeigen();
 
 //Schneeanimation
 pc.initSnow();
+pc.renderParticles = myCalendar.isWinter;
 pc.animate();
 
 //Events
