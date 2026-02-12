@@ -22,7 +22,7 @@ export class ParticleCanvas {
         const numberOfSnowflakes = 150;
         for (let i = 0; i < numberOfSnowflakes; i++) {
        
-            this.snowflakes.push(new Flocke(this.canvas.width, this.canvas.height));
+            this.snowflakes.push(new Flocke(screen.width, screen.height));
         }
     }
 
