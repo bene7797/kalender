@@ -37,11 +37,14 @@ body{
 }
 
 button{
-   
-       
-    background-color: rgba(0, 155, 245, 0.623);
+    background-color: rgba(22, 109, 0, 0.26);
+    border: none;
     border-radius: 10px;
     margin: 20;
+}
+
+button:hover{
+     background-color: rgba(47, 236, 0, 0.26);
 }
 
 #Info{
@@ -83,6 +86,7 @@ button{
 #Datum{
     grid-row: 1/1;
     grid-column: 2/4;
+    margin-top: 35;
 }
 
 #Infos{
@@ -96,7 +100,8 @@ td.datum-klickbar{
 }
 
 td.datum-klickbar:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(22, 109, 0, 0.26);
+    border-radius: 10px;
 }
 
 td.ausgewaehlt {
