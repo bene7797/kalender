@@ -20,10 +20,13 @@ body{
     grid-template-columns: repeat(5, 100px);
     
     opacity: 0.85;
-    background-color:  #38b6ff;
+    background-color:  #157be0;
     border-radius: 10px;
 }
 
+.sub, button:hover,td.datum-klickbar:hover {
+    background-color:#53a8b6;
+}
 
 #PartikelCanvas{
     position: fixed; 
@@ -37,22 +40,18 @@ body{
 }
 
 button{
-    background-color: rgba(22, 109, 0, 0.26);
     border: none;
     border-radius: 10px;
     margin: 20;
 }
 
-button:hover{
-     background-color: rgba(47, 236, 0, 0.26);
-}
 
 #Info{
     
     grid-row: 6/8;
     grid-column: 1/6;
     text-align: center;
-    background-color: rgba(22, 109, 0, 0.26);
+   
     border-radius: 10px;
 
     /* Innerhalb der Grid centrieren */
@@ -64,7 +63,7 @@ button:hover{
 #historical{
     grid-row: 8/11;
     grid-column: 1/6;
-    background-color: rgba(22, 109, 0, 0.26);
+  
     border-radius: 10px;
     margin: 20;
 
@@ -100,7 +99,7 @@ td.datum-klickbar{
 }
 
 td.datum-klickbar:hover {
-    background-color: rgba(22, 109, 0, 0.26);
+    
     border-radius: 10px;
 }
 
