@@ -2,9 +2,8 @@ import { Calender } from "./Calendar.js";
 import { ParticleCanvas } from "./ParticleCanvas.js";
 import { Images } from "./Images.js";
 
-
+//INIT
 let meinKalender = new Calender(new Date(1997,7-1,7));
-
 const datum = document.getElementById("Datum");
 const info = document.getElementById("Info");
 const kalendar = document.getElementById("Kalender");
@@ -12,23 +11,22 @@ const historicInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
 const myImages = new Images();
-
 const meinBody = document.body;
+const pc = new ParticleCanvas();
        
-      
-//meinBody.style.backgroundImage =`url('${myImages.fruehlingImages[1]}')`;
-     
-
-
+//Kalender füllen      
 meinKalender.initTableEvents(kalendar);
 meinKalender.getSeason();
+datum.innerHTML = meinKalender.getDateString();
+info.innerHTML = meinKalender.getDayInfoText();
+kalendar.innerHTML = meinKalender.getCalendarHTML();
+historicInfo.innerHTML = await meinKalender.anzeigen();
 
-const pc = new ParticleCanvas();
-
+//Schneeanimation
 pc.initSnow();
 pc.animate();
 
-
+//Events
 window.addEventListener('resize', () => { pc.resize();});
 
 previousMonthButton.addEventListener(`click`, () => {
@@ -38,11 +36,6 @@ previousMonthButton.addEventListener(`click`, () => {
 nextMonthButton.addEventListener(`click`, () => {
   meinKalender.nextMonth();
 });
-
-datum.innerHTML = meinKalender.getDateString();
-info.innerHTML = meinKalender.getDayInfoText();
-kalendar.innerHTML = meinKalender.getCalendarHTML();
-historicInfo.innerHTML = await meinKalender.anzeigen();
 
 window.addEventListener(`calendarUpdate`,async () => {
     console.log("Datum geändert");

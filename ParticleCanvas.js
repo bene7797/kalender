@@ -7,21 +7,12 @@ export class ParticleCanvas {
         this.snowflakes = []; 
         this.leaves = [];
         this.renderParticles = false;
-       
-        this.resize();
-    }
-
-    initLeaves(){
-        const numberOfLeaves = 20;
-        for(let i = 0; i < numberOfLeaves; i++)[
-            this.leaves.push(new Image().src = "/Bilder/HerbsBlatt.jpg")
-        ]
+        this.resize(); 
     }
 
     initSnow() {
-        const numberOfSnowflakes = 150;
+        const numberOfSnowflakes = 500;
         for (let i = 0; i < numberOfSnowflakes; i++) {
-       
             this.snowflakes.push(new Flocke(screen.width, screen.height));
         }
     }
@@ -31,30 +22,23 @@ export class ParticleCanvas {
     }
 
     animate() {
-
-        console.log("animate");
        if(this.renderParticles){
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      
             this.snowflakes.forEach(flake => {
                 flake.update();
                 flake.draw(this.ctx);
             });
 
             requestAnimationFrame(() => this.animate());
-        }
-        
+        }  
     }
 
-
-    //chatgpt funktion
     resize() {
-        const dpr = window.devicePixelRatio || 1;
+        const dpr = window.devicePixelRatio || 1; //Fallback auf 1 wenn devicePixelRatio nicht exisitiert
         this.canvas.width = window.innerWidth * dpr;
         this.canvas.height = window.innerHeight * dpr;
         
-        // Den Kontext skalieren, damit deine alten Koordinaten (0-innerWidth) noch passen
+        // skalieren - damit nicht unscharf -> 1 css pixel = 2*2 Hardwarepixel
         this.ctx.scale(dpr, dpr);
 
         this.canvas.style.width = window.innerWidth + "px";
