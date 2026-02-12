@@ -1,26 +1,23 @@
 import { Calender } from "./Calendar.js";
 import { ParticleCanvas } from "./ParticleCanvas.js";
-import { Images } from "./Images.js";
 
 //INIT
-let meinKalender = new Calender(new Date(1997,7-1,7));
-const datum = document.getElementById("Datum");
-const info = document.getElementById("Info");
-const kalendar = document.getElementById("Kalender");
-const historicInfo = document.getElementById("historical");
+let myCalendar = new Calender(new Date(1997,7-1,7));
+const date = document.getElementById("Datum");
+const dayInfo = document.getElementById("Info");
+const calendar = document.getElementById("Kalender");
+const historicalDayInfo = document.getElementById("historical");
 const nextMonthButton = document.getElementById("nextMonth");
 const previousMonthButton = document.getElementById("previousMonth");
-const myImages = new Images();
-const meinBody = document.body;
 const pc = new ParticleCanvas();
        
 //Kalender füllen      
-meinKalender.initTableEvents(kalendar);
-meinKalender.getSeason();
-datum.innerHTML = meinKalender.getDateString();
-info.innerHTML = meinKalender.getDayInfoText();
-kalendar.innerHTML = meinKalender.getCalendarHTML();
-historicInfo.innerHTML = await meinKalender.anzeigen();
+myCalendar.initTableEvents(calendar);
+myCalendar.getSeason();
+date.innerHTML = myCalendar.getDateString();
+dayInfo.innerHTML = myCalendar.getDayInfoText();
+calendar.innerHTML = myCalendar.getCalendarHTML();
+historicalDayInfo.innerHTML = await myCalendar.anzeigen();
 
 //Schneeanimation
 pc.initSnow();
@@ -30,22 +27,22 @@ pc.animate();
 window.addEventListener('resize', () => { pc.resize();});
 
 previousMonthButton.addEventListener(`click`, () => {
-  meinKalender.previousMonth();
+  myCalendar.previousMonth();
 });
 
 nextMonthButton.addEventListener(`click`, () => {
-  meinKalender.nextMonth();
+  myCalendar.nextMonth();
 });
 
 window.addEventListener(`calendarUpdate`,async () => {
     console.log("Datum geändert");
 
-    datum.innerHTML = meinKalender.getDateString();
-    info.innerHTML = meinKalender.getDayInfoText();
-    kalendar.innerHTML = meinKalender.getCalendarHTML();
-    historicInfo.innerHTML = await meinKalender.anzeigen();
-    console.log(meinKalender.winter);
-    pc.renderParticles = meinKalender.winter;
+    date.innerHTML = myCalendar.getDateString();
+    dayInfo.innerHTML = myCalendar.getDayInfoText();
+    calendar.innerHTML = myCalendar.getCalendarHTML();
+    historicalDayInfo.innerHTML = await myCalendar.anzeigen();
+    console.log(myCalendar.isWinter);
+    pc.renderParticles = myCalendar.isWinter;
     pc.clear();
     pc.animate();
     console.log(pc.renderParticles);

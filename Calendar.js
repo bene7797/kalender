@@ -1,4 +1,4 @@
-import { isHoliday, getHolidays } from 'https://cdn.skypack.dev/feiertagejs';
+import { isHoliday as checkHoliday, getHolidays } from 'https://cdn.skypack.dev/feiertagejs';
 import { Images } from './Images.js';
 
 export class Calender{
@@ -8,39 +8,35 @@ export class Calender{
         this.day = date.getDate();
         this.month = date.getMonth();
         this.year = date.getFullYear();
-        this.feiertag = isHoliday(date, 'ALL')? `ein` : `kein`;
-        this.images = new Images();
-        this.winter = false;
+        this.isHoliday = checkHoliday(date, 'ALL')? `ein` : `kein`;
+        this.seasonImages = new Images();
+        this.isWinter = false;
     }
-
 
     /**
  * @param {HTMLTableElement} kalenderTabelle
  */
-
     getSeason(){
         const meinBody = document.body;
         
-        
-       
         if(this.month >= 0 && this.month <= 2){
             
-             meinBody.style.backgroundImage =`url('${this.images.winterImages[Math.floor(Math.random() * this.images.winterImages.length)]}')`;
-             this.winter = true;
+             meinBody.style.backgroundImage =`url('${this.seasonImages.winterImages[Math.floor(Math.random() * this.seasonImages.winterImages.length)]}')`;
+             this.isWinter = true;
         }else{
-            this.winter = false;
+            this.isWinter = false;
         } 
         if(this.month >= 3 && this.month <= 5){
             
-             meinBody.style.backgroundImage =`url('${this.images.fruehlingImages[Math.floor(Math.random() * this.images.fruehlingImages.length)]}')`;
+             meinBody.style.backgroundImage =`url('${this.seasonImages.fruehlingImages[Math.floor(Math.random() * this.seasonImages.fruehlingImages.length)]}')`;
         }
         if(this.month >= 6 && this.month <= 8){
             
-             meinBody.style.backgroundImage =`url('${this.images.sommerImages[Math.floor(Math.random() * this.images.sommerImages.length)]}')`;
+             meinBody.style.backgroundImage =`url('${this.seasonImages.sommerImages[Math.floor(Math.random() * this.seasonImages.sommerImages.length)]}')`;
         }
         if(this.month >= 9 && this.month <= 11){
             
-             meinBody.style.backgroundImage =`url('${this.images.herbstImages[Math.floor(Math.random() * this.images.herbstImages.length)]}')`;
+             meinBody.style.backgroundImage =`url('${this.seasonImages.herbstImages[Math.floor(Math.random() * this.seasonImages.herbstImages.length)]}')`;
         }
     }
 
@@ -69,7 +65,7 @@ export class Calender{
         this.day = this.date.getDate();
         this.month = this.date.getMonth();
         this.year = this.date.getFullYear();
-        this.feiertag = isHoliday(this.date, 'ALL')? `ein` : `kein`;
+        this.isHoliday = checkHoliday(this.date, 'ALL')? `ein` : `kein`;
         this.getSeason();
     }
 
@@ -86,7 +82,7 @@ export class Calender{
         let infoText = `Der ${this.day} ${monthString} ${this.year}
                      ist ein ${weekDayString} und zwar der ${this.day} ${weekDayString} des Jahres ${this.year}. Es handelt sich um den 
                      ${dayOfYear} Tag des Jahres, was bedeutet dass es noch ${365 - dayOfYear} Tage bis zum Jahresende sind.
-                     Der Monat ${monthString} hat insgesamt ${new Date(this.year,this.month +1,0).getDate()} Tage. Heute ist ${this.feiertag} gesetzlicher Feiertag.`;
+                     Der Monat ${monthString} hat insgesamt ${new Date(this.year,this.month +1,0).getDate()} Tage. Heute ist ${this.isHoliday} gesetzlicher Feiertag.`;
 
 
         return infoText;

@@ -1,11 +1,10 @@
-import { Flocke } from "./Flocke.js";
+import { Flake } from "./Flocke.js";
 
 export class ParticleCanvas {
     constructor() {
         this.canvas = document.getElementById("PartikelCanvas");
         this.ctx = this.canvas.getContext("2d");
         this.snowflakes = []; 
-        this.leaves = [];
         this.renderParticles = false;
         this.resize(); 
     }
@@ -13,7 +12,7 @@ export class ParticleCanvas {
     initSnow() {
         const numberOfSnowflakes = 500;
         for (let i = 0; i < numberOfSnowflakes; i++) {
-            this.snowflakes.push(new Flocke(screen.width, screen.height));
+            this.snowflakes.push(new Flake(screen.width, screen.height));
         }
     }
 
@@ -40,7 +39,6 @@ export class ParticleCanvas {
         
         // skalieren - damit nicht unscharf -> 1 css pixel = 2*2 Hardwarepixel
         this.ctx.scale(dpr, dpr);
-
         this.canvas.style.width = window.innerWidth + "px";
         this.canvas.style.height = window.innerHeight + "px";
     }
