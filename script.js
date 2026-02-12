@@ -24,8 +24,11 @@ meinKalender.initTableEvents(kalendar);
 meinKalender.getSeason();
 
 const pc = new ParticleCanvas();
+
 pc.initSnow();
 pc.animate();
+
+
 window.addEventListener('resize', () => { pc.resize();});
 
 previousMonthButton.addEventListener(`click`, () => {
@@ -48,4 +51,9 @@ window.addEventListener(`calendarUpdate`,async () => {
     info.innerHTML = meinKalender.getDayInfoText();
     kalendar.innerHTML = meinKalender.getCalendarHTML();
     historicInfo.innerHTML = await meinKalender.anzeigen();
+    console.log(meinKalender.winter);
+    pc.renderParticles = meinKalender.winter;
+    pc.clear();
+    pc.animate();
+    console.log(pc.renderParticles);
 })

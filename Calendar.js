@@ -10,7 +10,7 @@ export class Calender{
         this.year = date.getFullYear();
         this.feiertag = isHoliday(date, 'ALL')? `ein` : `kein`;
         this.images = new Images();
-        
+        this.winter = false;
     }
 
 
@@ -26,7 +26,10 @@ export class Calender{
         if(this.month >= 0 && this.month <= 2){
             
              meinBody.style.backgroundImage =`url('${this.images.winterImages[Math.floor(Math.random() * this.images.winterImages.length)]}')`;
-        }
+             this.winter = true;
+        }else{
+            this.winter = false;
+        } 
         if(this.month >= 3 && this.month <= 5){
             
              meinBody.style.backgroundImage =`url('${this.images.fruehlingImages[Math.floor(Math.random() * this.images.fruehlingImages.length)]}')`;

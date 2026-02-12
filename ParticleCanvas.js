@@ -5,8 +5,17 @@ export class ParticleCanvas {
         this.canvas = document.getElementById("PartikelCanvas");
         this.ctx = this.canvas.getContext("2d");
         this.snowflakes = []; 
+        this.leaves = [];
+        this.renderParticles = false;
        
         this.resize();
+    }
+
+    initLeaves(){
+        const numberOfLeaves = 20;
+        for(let i = 0; i < numberOfLeaves; i++)[
+            this.leaves.push(new Image().src = "/Bilder/HerbsBlatt.jpg")
+        ]
     }
 
     initSnow() {
@@ -17,18 +26,25 @@ export class ParticleCanvas {
         }
     }
 
+    clear(){
+         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     animate() {
-       
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        console.log("animate");
+       if(this.renderParticles){
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       
-        this.snowflakes.forEach(flake => {
-            flake.update();
-            flake.draw(this.ctx);
-        });
+            this.snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw(this.ctx);
+            });
 
+            requestAnimationFrame(() => this.animate());
+        }
         
-        requestAnimationFrame(() => this.animate());
     }
 
 

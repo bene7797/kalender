@@ -1,6 +1,6 @@
 export class Flocke {
-    static maxSize = 3;
-    static maxSpeed = 1;
+    static maxSize = 8;
+    static maxSpeed = 5;
 
     constructor(canvasWidth, canvasHeight) {
         this.canvasWidth = canvasWidth;
