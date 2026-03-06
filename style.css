@@ -95,9 +95,11 @@ td.date-clickable:hover {
 
 
 #Datum {
-    grid-row: 1/1;
-    grid-column: 3/6;
-    margin-top: 35px;
+    grid-row: 1;
+    grid-column: 1 / 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 

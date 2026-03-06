@@ -8,6 +8,13 @@ export class ParticleCanvas {
         this.renderParticles = false;
         this.resize();
         this.animationId = null;
+        this.mouseX = 0;
+        this.mouseY = 0;
+
+        document.addEventListener("mousemove", (event) => {
+            this.mouseX = event.clientX;
+            this.mouseY = event.clientY;
+        });
     }
 
     initSnow() {
@@ -29,7 +36,7 @@ export class ParticleCanvas {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.snowflakes.forEach(flake => {
-            flake.update();
+            flake.update(this.mouseX, this.mouseY);
             flake.draw(this.ctx);
         });
 

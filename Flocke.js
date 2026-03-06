@@ -11,14 +11,11 @@ export class Flake {
         this.size = Math.random() * Flake.MAX_SIZE;
         this.speed = Math.random() * Flake.MAX_SPEED;
 
-        document.addEventListener("mousemove", (event) => {
-            this.cursorPosX = event.clientX;
-            this.cursorPosY = event.clientY;
-        });
+
     }
 
     //Positionstranformation mit Loop in Y-Achse
-    update() {
+    update(mouseX, mouseY) {
         this.posY += this.speed;
         if (this.posY > this.canvasHeight) {
             this.posY = -5;
@@ -26,7 +23,9 @@ export class Flake {
         }
 
         //Maus verfolgen
-        this.posX += (this.posX - this.cursorPosX) / 200;
+        if (mouseX !== undefined) {
+            this.posX += (this.posX - mouseX) / 200;
+        }
     }
 
     //Schneeflocken zeichnen
