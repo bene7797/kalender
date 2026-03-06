@@ -38,13 +38,16 @@ nextMonthButton.addEventListener(`click`, () => {
 window.addEventListener(`calendarUpdate`, async () => {
   console.log("Datum geändert");
 
+  pc.stopAnnim();
+
   date.innerHTML = myCalendar.getDateString();
   dayInfo.innerHTML = myCalendar.getDayInfoText();
   calendar.innerHTML = myCalendar.getCalendarHTML();
   historicalDayInfo.innerHTML = await myCalendar.anzeigen();
   console.log(myCalendar.isWinter);
   pc.renderParticles = myCalendar.isWinter;
-  pc.clear();
-  pc.animate();
+  if (pc.renderParticles) {
+    pc.animate();
+  }
   console.log(pc.renderParticles);
 })
