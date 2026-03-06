@@ -12,6 +12,7 @@ export class Calender {
         this.isHoliday = checkHoliday(date, 'ALL') ? `ein` : `kein`;
         this.seasonImages = new Images();
         this.isWinter = false;
+        this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
         const WEEK_DAYS = 7;
         const MS_DAY = 1000 * 60 * 60 * 24;
     }
@@ -75,7 +76,7 @@ export class Calender {
         let infoText = `Der ${this.day} ${monthString} ${this.year}
                      ist ein ${weekDayString} und zwar der ${this.day} ${weekDayString} des Jahres ${this.year}. Es handelt sich um den 
                      ${dayOfYear} Tag des Jahres, was bedeutet dass es noch ${365 - dayOfYear} Tage bis zum Jahresende sind.
-                     Der Monat ${monthString} hat insgesamt ${new Date(this.year, this.month + 1, 0).getDate()} Tage. Heute ist ${this.isHoliday} gesetzlicher Feiertag.`;
+                     Der Monat ${monthString} hat insgesamt ${this.daysInMonth} Tage. Heute ist ${this.isHoliday} gesetzlicher Feiertag.`;
 
 
         return infoText;
