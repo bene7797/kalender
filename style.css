@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #000000;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,52 +8,57 @@ body{
     display: flex;
     justify-content: center;
     display: flex;
-    flex-direction: column; /* Elemente stehen jetzt untereinander */
-    align-items: center;    /* Zentriert sie horizontal in der Spalte */
+    flex-direction: column;
+    /* Elemente stehen jetzt untereinander */
+    align-items: center;
+    /* Zentriert sie horizontal in der Spalte */
     margin: 0;
     min-height: 100vh;
 }
 
-#kalenderLayout{
+#kalenderLayout {
     display: inline-grid;
     grid-template-rows: repeat(9, 100px);
     grid-template-columns: repeat(5, 100px);
-    
+
     opacity: 0.85;
-    background-color:  #157be0;
+    background-color: #157be0;
     border-radius: 10px;
 }
 
-.sub, button:hover,td.datum-klickbar:hover {
-    background-color:#53a8b6;
+.sub,
+button:hover,
+td.date-clickable:hover {
+    background-color: #53a8b6;
 }
 
-#PartikelCanvas{
-    position: fixed; 
+#PartikelCanvas {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;   
-    height: 100vh;  
-    z-index: -1;    
-    
-    pointer-events: none; /*Damit die klicks nicht den canvas erwischen */
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+
+    pointer-events: none;
+    /*Damit die klicks nicht den canvas erwischen */
 }
 
-button{
+button {
     border: none;
     border-radius: 10px;
     margin: 20;
-    background-color:  #157be0;
+    background-color: #157be0;
     font-size: 20;
 }
 
 
-#Info{
-    
+#Info {
+
     grid-row: 6/8;
     grid-column: 1/6;
     text-align: center;
-   
+
     border-radius: 10px;
 
     /* Innerhalb der Grid centrieren */
@@ -62,59 +67,80 @@ button{
     margin: 20;
 }
 
-#historical{
+#historical {
     grid-row: 8/11;
     grid-column: 1/6;
-  
+
     border-radius: 10px;
     margin: 20;
 
-    
+
 }
 
-#previousMonth{
+#previousMonth {
     grid-row: 1/1;
     grid-column: 1/1;
     justify-items: center;
     align-items: center;
 }
-#nextMonth{
+
+#nextMonth {
     grid-row: 1/1;
     grid-column: 5/5;
     justify-items: center;
     align-items: center;
 }
-#Datum{
+
+#Datum {
     grid-row: 1/1;
     grid-column: 2/4;
     margin-top: 35;
 }
 
-#Infos{
-    background-color:  #8acbff;
+#Infos {
+    background-color: #8acbff;
     border-radius: 10px;
     opacity: 0.85;
 }
 
-td.datum-klickbar{
+td.date-clickable {
     cursor: pointer;
 }
 
-td.datum-klickbar:hover {
-    
+td.date-clickable:hover {
+
     border-radius: 10px;
 }
 
 td.ausgewaehlt {
-    background-color: #d0d0d0; 
+    background-color: #d0d0d0;
     font-weight: bold;
 }
 
+.today {
+    background-color: rgb(155, 255, 61);
+}
+
+.saturday {
+    color: blue;
+}
+
+.sunday {
+    color: red;
+}
+
+.holiday {
+    color: rgb(72, 255, 0);
+}
+
+.different_month {
+    color: rgb(248, 248, 248)
+}
 
 
-#Kalender {
+#tableContainer {
     grid-row: 2/6;
-    grid-column:1/6;
+    grid-column: 1/6;
     justify-items: right;
     justify-content: right;
     text-align: center;
@@ -123,10 +149,9 @@ td.ausgewaehlt {
 
 
 
-#Datum{
+#Datum {
     grid-row: 1/1;
-    grid-column:3/6;
+    grid-column: 3/6;
     justify-items: center;
     align-items: center;
 }
-

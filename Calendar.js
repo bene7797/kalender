@@ -3,6 +3,7 @@ import { Images } from './Images.js';
 
 export class Calender {
 
+
     constructor(date) {
         this.date = date;
         this.day = date.getDate();
@@ -11,6 +12,8 @@ export class Calender {
         this.isHoliday = checkHoliday(date, 'ALL') ? `ein` : `kein`;
         this.seasonImages = new Images();
         this.isWinter = false;
+        const WEEK_DAYS = 7;
+        const MS_DAY = 1000 * 60 * 60 * 24;
     }
 
 
@@ -80,34 +83,107 @@ export class Calender {
 
     getCalendarHTML() {
 
-        let kalenderhtml = `<tr> <th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr>`;
-        let firstDayIndex = (new Date(this.year, this.month, 1).getDay() + 6) % 7;
-        let daysInMonth = new Date(this.year, this.month + 1, 0).getDate(); //Anzahl an Tage im aktuellen Monat
+        //Init
+        const firstDayIndex = (new Date(this.year, this.month, 1).getDay() + 6) % 7;
+        const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+        const lastDayIndex = (firstDayIndex + daysInMonth - 1) % 7;
 
-        for (let spalte = 0; spalte < 6; spalte++) {
-            kalenderhtml += `<tr>`
-            for (let reihe = 0; reihe < 7; reihe++) {
-                let index = reihe + 7 * spalte + 1 - firstDayIndex;
-                let leer = " "
-                if (index > 0 && index <= daysInMonth) {
-                    kalenderhtml += `<td class = "datum-klickbar">${index}</td>`
-                } else {
-                    kalenderhtml += `<td></td>`
-                }
+        const daysFromPrevMonth = firstDayIndex;
+        const daysFromNextMonth = 6 - lastDayIndex;
+
+        const totalDays = daysFromPrevMonth + daysInMonth + daysFromNextMonth;
+
+        const calendarStart = new Date(this.year, this.month, 1 - daysFromPrevMonth);
+
+
+        //Render Funktionen
+        const renderCalendarStart = () => `
+        
+            <tr>
+                <th>Mo</th><th>Di</th><th>Mi</th>
+                <th>Do</th><th>Fr</th><th>Sa</th><th>So</th>
+            </tr>
+        `;
+
+        // const renderCalendarEnd = () => `</table>`;
+        const renderWeekStart = () => `<tr>`;
+        const renderWeekEnd = () => `</tr>`;
+
+        const renderDay = (date) => {
+
+            const isCurrentMonth = date.getMonth() === this.month;
+
+            const today = new Date();
+            const isToday =
+                date.getFullYear() === today.getFullYear() &&
+                date.getMonth() === today.getMonth() &&
+                date.getDate() === today.getDate();
+
+            const weekday = date.getDay();
+
+
+            let classes = [];
+
+            if (isCurrentMonth) {
+                classes.push("date-clickable");
+            } else {
+                classes.push("different_month");
             }
-            kalenderhtml += `</tr>`
+
+            if (weekday === 6) {
+                classes.push("saturday");
+            }
+
+            if (weekday === 0) {
+                classes.push("sunday");
+            }
+
+            if (isToday) {
+                classes.push("today");
+            }
+
+            if (checkHoliday(date, 'ALL')) {
+                classes.push("holiday");
+            }
+
+            return `
+             <td class="${classes.join(" ")}">
+                ${date.getDate()}
+                 </td>
+            `;
+        };
+
+
+        //Kalendeererstellung
+        let html = renderCalendarStart();
+        let currentDate = new Date(calendarStart);
+
+        for (let i = 0; i < totalDays; i++) {
+
+            if (i % 7 === 0) {
+                html += renderWeekStart();
+            }
+
+            html += renderDay(currentDate);
+
+            if (i % 7 === 6) {
+                html += renderWeekEnd();
+            }
+
+            currentDate.setDate(currentDate.getDate() + 1);
         }
 
-        return kalenderhtml;
-
+        //  html += renderCalendarEnd();
+        console.log(html);
+        return html;
     }
 
     dayOfYear() {
         const start = new Date(this.date.getFullYear(), 0, 1); // 1. Januar
         const diff = this.date - start;
-        const einTag = 1000 * 60 * 60 * 24;
 
-        return Math.floor(diff / einTag) + 1;
+
+        return Math.floor(diff / this.MS_DAY) + 1;
     }
 
 
