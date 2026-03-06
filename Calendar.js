@@ -15,10 +15,14 @@ export class Calender {
         this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
         const WEEK_DAYS = 7;
         const MS_DAY = 1000 * 60 * 60 * 24;
+        this.lastImage = null;
     }
 
 
     getSeason() {
+        const bgContainer = document.getElementById('bg-container');
+
+
         const meinBody = document.body;
         const seasons = [
             this.seasonImages.winterImages,    // 0
@@ -30,8 +34,26 @@ export class Calender {
         const seasonIndex = Math.floor(this.month / 3);
         this.isWinter = (seasonIndex === 0);
         const selectedImages = seasons[seasonIndex];
-        const randomImage = selectedImages[Math.floor(Math.random() * selectedImages.length)];
-        meinBody.style.backgroundImage = `url('${randomImage}')`;
+        var randomP = Math.floor(Math.random() * selectedImages.length);
+        var randomImage = selectedImages[randomP];
+        if (randomImage === this.lastImage) {
+            randomImage = selectedImages[(randomP + 1) % selectedImages.length];
+        }
+        this.lastImage = randomImage;
+        //meinBody.style.backgroundImage = `url('${randomImage}')`;
+        bgContainer.style.opacity = 0;
+        setTimeout(() => {
+
+            const img = new Image();
+            img.src = randomImage;
+
+            img.onload = () => {
+
+                bgContainer.style.backgroundImage = `url('${randomImage}')`;
+
+                bgContainer.style.opacity = 1;
+            };
+        }, 500);
     }
 
     initTableEvents(kalenderTabelle) {
