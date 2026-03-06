@@ -116,12 +116,14 @@ td.date-clickable:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #82ec999c;
 }
 
 #historical {
     grid-row: 8/11;
     grid-column: 1/6;
     margin: 20px;
+    background-color: #c6ffd288;
 }
 
 
