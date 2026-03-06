@@ -25,7 +25,7 @@ export class Flake {
 
         //Maus verfolgen
         if (mouseX !== undefined) {
-            this.posX += (this.posX - mouseX) / 200;
+            this.posX += (this.posX - mouseX) / 100;
         }
     }
 

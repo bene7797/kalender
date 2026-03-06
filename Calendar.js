@@ -13,8 +13,8 @@ export class Calender {
         this.seasonImages = new Images();
         this.isWinter = false;
         this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-        const WEEK_DAYS = 7;
-        const MS_DAY = 1000 * 60 * 60 * 24;
+        this.WEEK_DAYS = 7;
+        this.MS_DAY = 1000 * 60 * 60 * 24;
         this.lastImage = null;
     }
 
@@ -206,11 +206,17 @@ export class Calender {
     }
 
     dayOfYear() {
-        const start = new Date(this.date.getFullYear(), 0, 1); // 1. Januar
+
+        const start = new Date(this.date.getFullYear(), 0, 0); // 1. Januar
+        console.log(start);
         const diff = this.date - start;
+        console.log(diff);
+        const result = Math.floor(diff / this.MS_DAY) + 1;
+        console.log(result);
+        console.log(this.MS_DAY);
 
 
-        return Math.floor(diff / this.MS_DAY) + 1;
+        return result;
     }
 
 
