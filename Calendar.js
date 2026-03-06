@@ -275,7 +275,7 @@ export class Calender {
             year++;
         }
 
-        this.date = new Date(year, month, this.day)
+        this.date = new Date(year, month, 1)
         this.calculateDates();
 
         const event = new CustomEvent(`calendarUpdate`, {
@@ -295,7 +295,7 @@ export class Calender {
             year--;
         }
 
-        this.date = new Date(year, month, this.day)
+        this.date = new Date(year, month, 1)
         this.calculateDates();
 
         const event = new CustomEvent(`calendarUpdate`, {
