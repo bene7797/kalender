@@ -64,7 +64,11 @@ export class Calender {
     }
 
     getDateString() {
-        return ` ${this.day}.${this.month + 1}.${this.year}`;
+        return this.date.toLocaleDateString("de-DE", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
     }
 
     getDayInfoText() {
