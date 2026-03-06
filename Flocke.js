@@ -7,7 +7,7 @@ export class Flake {
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.posX = Math.random() * canvasWidth;
-        this.posY = Math.random() * canvasHeight; 
+        this.posY = Math.random() * canvasHeight;
         this.size = Math.random() * Flake.MAX_SIZE;
         this.speed = Math.random() * Flake.MAX_SPEED;
 
@@ -26,7 +26,7 @@ export class Flake {
         }
 
         //Maus verfolgen
-        this.posX += (this.posX - this.cursorPosX)/200;
+        this.posX += (this.posX - this.cursorPosX) / 200;
     }
 
     //Schneeflocken zeichnen
