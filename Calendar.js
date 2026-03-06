@@ -111,9 +111,9 @@ export class Calender {
     getCalendarHTML() {
 
         //Init
-        const firstDayIndex = (new Date(this.year, this.month, 1).getDay() + 6) % 7;
+        const firstDayIndex = (new Date(this.year, this.month, 1).getDay() + 6) % WEEK_DAYS;
         const daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-        const lastDayIndex = (firstDayIndex + daysInMonth - 1) % 7;
+        const lastDayIndex = (firstDayIndex + daysInMonth - 1) % WEEK_DAYS;
 
         const daysFromPrevMonth = firstDayIndex;
         const daysFromNextMonth = 6 - lastDayIndex;
@@ -187,13 +187,13 @@ export class Calender {
 
         for (let i = 0; i < totalDays; i++) {
 
-            if (i % 7 === 0) {
+            if (i % WEEK_DAYS === 0) {
                 html += renderWeekStart();
             }
 
             html += renderDay(currentDate);
 
-            if (i % 7 === 6) {
+            if (i % WEEK_DAYS === 6) {
                 html += renderWeekEnd();
             }
 
@@ -281,7 +281,7 @@ export class Calender {
             year++;
         }
 
-        this.date = new Date(year, month, this.day)
+        this.date = new Date(year, month, 1)
         this.calculateDates();
 
         const event = new CustomEvent(`calendarUpdate`, {
@@ -301,7 +301,7 @@ export class Calender {
             year--;
         }
 
-        this.date = new Date(year, month, this.day)
+        this.date = new Date(year, month, 1)
         this.calculateDates();
 
         const event = new CustomEvent(`calendarUpdate`, {
