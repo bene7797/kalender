@@ -10,6 +10,7 @@ export class ParticleCanvas {
         this.animationId = null;
         this.mouseX = 0;
         this.mouseY = 0;
+        this.numberOfSnowFlakes = 1500;
 
         document.addEventListener("mousemove", (event) => {
             this.mouseX = event.clientX;
@@ -18,10 +19,9 @@ export class ParticleCanvas {
     }
 
     initSnow() {
-        const numberOfSnowflakes = 500;
         const w = this.canvas.width / (window.devicePixelRatio || 1);
         const h = this.canvas.height / (window.devicePixelRatio || 1);
-        for (let i = 0; i < numberOfSnowflakes; i++) {
+        for (let i = 0; i < this.numberOfSnowFlakes; i++) {
             this.snowflakes.push(new Flake(w, h));
         }
     }
@@ -36,7 +36,6 @@ export class ParticleCanvas {
             this.stop();
             return;
         }
-
 
         this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
