@@ -4,6 +4,7 @@ export class Flake {
 
     //Größe und Position werden random generiert beim Erstellen
     constructor(canvasWidth, canvasHeight) {
+        this.setBounds(canvasWidth, canvasHeight);
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.posX = Math.random() * canvasWidth;
@@ -34,5 +35,10 @@ export class Flake {
         ctx.beginPath();
         ctx.arc(this.posX, this.posY, this.size, 0, Math.PI * 2);
         ctx.fill();
+    }
+
+    setBounds(w, h) {
+        this.canvasWidth = w;
+        this.canvasHeight = h;
     }
 }

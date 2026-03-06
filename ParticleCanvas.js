@@ -19,22 +19,27 @@ export class ParticleCanvas {
 
     initSnow() {
         const numberOfSnowflakes = 500;
+        const w = this.canvas.width / (window.devicePixelRatio || 1);
+        const h = this.canvas.height / (window.devicePixelRatio || 1);
         for (let i = 0; i < numberOfSnowflakes; i++) {
-            this.snowflakes.push(new Flake(screen.width, screen.height));
+            this.snowflakes.push(new Flake(w, h));
         }
     }
 
     clear() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     }
 
     animate() {
+
         if (!this.renderParticles) {
             this.stop();
             return;
         }
 
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
         this.snowflakes.forEach(flake => {
             flake.update(this.mouseX, this.mouseY);
             flake.draw(this.ctx);
@@ -44,6 +49,8 @@ export class ParticleCanvas {
     }
 
     resize() {
+
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         const dpr = window.devicePixelRatio || 1; //Fallback auf 1 wenn devicePixelRatio nicht exisitiert
         this.canvas.width = window.innerWidth * dpr;
         this.canvas.height = window.innerHeight * dpr;
@@ -52,6 +59,13 @@ export class ParticleCanvas {
         this.ctx.scale(dpr, dpr);
         this.canvas.style.width = window.innerWidth + "px";
         this.canvas.style.height = window.innerHeight + "px";
+
+        this.snowflakes.forEach(flake => {
+
+            if (typeof flake.setBounds === 'function') {
+                flake.setBounds(window.innerWidth, window.innerHeight);
+            }
+        });
     }
 
     stopAnnim() {
